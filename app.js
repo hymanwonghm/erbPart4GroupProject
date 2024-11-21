@@ -2,6 +2,7 @@
 const express = require('express')
 const path = require('path')
 const { router } = require('./routers')
+const { logging } = require('./middleware/logging')
 
 // Define Express App
 const app = express()
@@ -15,6 +16,7 @@ app.use(express.static(path.join(__dirname, 'static')))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.use(logging)
 app.use('/', router)
 
 // Starting Express App server
